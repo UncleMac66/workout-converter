@@ -12,8 +12,17 @@ You can convert a workout file that you have created or downloaded using
 
     python3 workout-converter.py -f <targetformat> <input file>
 
+or using your local venv python, for example:
+    .venv/bin/python workout-converter.py -f <targetformat> <input file>
+
 which will be saved with the same name (but different extension) in the same path as the input file.
 Please have a look at the command line help (`-h`) for additional options.
+
+**New IGPSPORT .fit export (Binavi-ready):**
+To convert from Zwift (.zwo) to IGPSPORT .fit:
+    .venv/bin/python workout-converter.py -f igpsport <workout.zwo>
+
+The output .fit file can be uploaded to your IGPSPORT Binavi by following device instructions. Use a POSIX shell or correct interpreter per your OS (see “Known Issues” for Windows/venv compatibility tips).
 
 You can query the list of available output formats:
 
@@ -23,10 +32,11 @@ You can query the list of available output formats:
 
 At the moment, the following file formats are supported for reading/writing
 
-| Format        | Read               | Write              | Comment                    |
-|---------------|--------------------|--------------------|----------------------------|
-| Wahoo (.plan) | :x:                | :white_check_mark: | for Wahoo ELEMNT headunits |
-| Zwift (.zwo)  | :white_check_mark: | :x:                |                            |
+| Format           | Read               | Write              | Comment                                    |
+|------------------|--------------------|--------------------|--------------------------------------------|
+| Wahoo (.plan)    | :x:                | :white_check_mark: | for Wahoo ELEMNT headunits                 |
+| Zwift (.zwo)     | :white_check_mark: | :x:                |                                            |
+| IGPSPORT (.fit)  | :x:                | :white_check_mark: | for IGPSPORT (Binavi-compatible .fit file) |
 
 Additional support can be easily added by implmenting a corresponding [parser](workout_converter/parsers)
 

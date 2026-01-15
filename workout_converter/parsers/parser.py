@@ -1,11 +1,13 @@
 from .wahoo import WahooParser
 from .zwift import ZwiftParser
+from .igpsport import IGPSportParser
 
 class Parser(object):
     
     PARSERS = [
         WahooParser,
-        ZwiftParser
+        ZwiftParser,
+        IGPSportParser
     ]
     
     @staticmethod
