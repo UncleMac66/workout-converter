@@ -36,12 +36,6 @@ To convert from Zwift (.zwo) to iGPSPORT .fit:
 
     python3 workout-converter.py -f igpsport <workout.zwo>
 
-The output .fit file can be uploaded to your iGPSPORT BiNavi by following device instructions.
-
-1. Connect iGPSPORT device 
-2. Upload .fit file to Workouts/ folder on device
-3. Workout and enjoy
-
 ## File Formats
 
 At the moment, the following file formats are supported for reading/writing
