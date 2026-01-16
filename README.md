@@ -4,7 +4,7 @@ This is a tiny command line tool to convert between different file formats for s
 
 ## Usage
 
-Please clean the repo to get the source code
+Please clone the repo to get the source code
 
     git clone https://github.com/mherb/workout-converter.git && cd workout-converter
 
@@ -18,11 +18,23 @@ or using your local venv python, for example:
 which will be saved with the same name (but different extension) in the same path as the input file.
 Please have a look at the command line help (`-h`) for additional options.
 
-**New IGPSPORT .fit export (Binavi-ready):**
-To convert from Zwift (.zwo) to IGPSPORT .fit:
-    .venv/bin/python workout-converter.py -f igpsport <workout.zwo>
+**New IGPSPORT .fit export:**
+**Note: Requires additional package `python-fit-encode` **
+      __Only tested on Binavi__
 
-The output .fit file can be uploaded to your IGPSPORT Binavi by following device instructions. Use a POSIX shell or correct interpreter per your OS (see “Known Issues” for Windows/venv compatibility tips).
+```
+pip install git+https://github.com/hpcjc/python-fit-encode
+```
+
+To convert from Zwift (.zwo) to IGPSPORT .fit:
+
+    python3 workout-converter.py -f igpsport <workout.zwo>
+
+The output .fit file can be uploaded to your IGPSPORT Binavi by following device instructions.
+
+1. Connect igpsport device 
+2. Upload .fit file to Workouts/ folder on device
+3. Workout and enjoy
 
 You can query the list of available output formats:
 
@@ -36,7 +48,7 @@ At the moment, the following file formats are supported for reading/writing
 |------------------|--------------------|--------------------|--------------------------------------------|
 | Wahoo (.plan)    | :x:                | :white_check_mark: | for Wahoo ELEMNT headunits                 |
 | Zwift (.zwo)     | :white_check_mark: | :x:                |                                            |
-| IGPSPORT (.fit)  | :x:                | :white_check_mark: | for IGPSPORT (Binavi-compatible .fit file) |
+| iGPSPORT (.fit)  | :x:                | :white_check_mark: | for iGPSPORT (Binavi-compatible .fit file) |
 
 Additional support can be easily added by implmenting a corresponding [parser](workout_converter/parsers)
 
@@ -48,3 +60,4 @@ Below are some helpful resources and related projects about various workout file
 - [h4l/zwift-workout-file-reference](https://github.com/h4l/zwift-workout-file-reference)
 - [ManuelWiese/mrc_tools](https://github.com/ManuelWiese/mrc_tools)
 - [mhanney/zwoparse](https://github.com/mhanney/zwoparse)
+- [dtcooper/fitparse](https://github.com/dtcooper/python-fitparse)

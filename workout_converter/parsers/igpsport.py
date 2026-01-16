@@ -19,11 +19,11 @@ class IGPSportParser(ParserBase):
             from datetime import datetime
         except ImportError:
             raise ImportError(
-                "fitencode library is required for IGPSPORT .fit export. Please install with: pip install git+https://github.com/hpcjc/python-fit-encode.\n"
+                "fitencode library is required for iGPSPORT .fit export. Please install with: pip install git+https://github.com/hpcjc/python-fit-encode.\n"
             )
 
         # Define local message types for file_id, workout, workout_step
-        # These may need to be adjusted based on IGPSPORT-specific requirements
+        # These may need to be adjusted based on iGPSPORT-specific requirements
         class LocalFileId(messages.FileId):
             manufacturer = fields.Uint16Field(field_def=1)
             type = fields.FileField(field_def=0)
@@ -89,7 +89,7 @@ class IGPSportParser(ParserBase):
             target_type_map = {
                 "power": 1,
                 "heart_rate": 2,
-                "open": 0
+                "time": 0
             }
 
             for seg in workout.segments:
@@ -98,7 +98,7 @@ class IGPSportParser(ParserBase):
                     for entry in seg.entries:
                         tgt = entry.targets
                         # Default to open
-                        target_type = "open"
+                        target_type = "time"
                         target_value = 0
                         custom_target_value_low = 0
                         custom_target_value_high = 0
@@ -135,7 +135,7 @@ class IGPSportParser(ParserBase):
                                 custom_target_value_low = custom_target_value_high = pw.value
 
                         step_name = entry.name or seg.description or workout.name
-                        duration = float(entry.duration)
+                        duration = int(entry.duration)
 
                         workout_step = LocalWorkoutStep()
                         fit.add_definition(workout_step)
