@@ -18,27 +18,29 @@ or using your local venv python, for example:
 which will be saved with the same name (but different extension) in the same path as the input file.
 Please have a look at the command line help (`-h`) for additional options.
 
-**New IGPSPORT .fit export:**
-**Note: Requires additional package `python-fit-encode` **
-      __Only tested on Binavi__
+You can query the list of available output formats:
+
+    python3 workout-converter.py -F
+
+### New iGPSPORT .fit export:
+
+**Note: Requires additional package `python-fit-encode`**
+    
+_Only tested on a [BiNavi](https://www.igpsport.com/product/binavi)_
 
 ```
 pip install git+https://github.com/hpcjc/python-fit-encode
 ```
 
-To convert from Zwift (.zwo) to IGPSPORT .fit:
+To convert from Zwift (.zwo) to iGPSPORT .fit:
 
     python3 workout-converter.py -f igpsport <workout.zwo>
 
-The output .fit file can be uploaded to your IGPSPORT Binavi by following device instructions.
+The output .fit file can be uploaded to your iGPSPORT BiNavi by following device instructions.
 
-1. Connect igpsport device 
+1. Connect iGPSPORT device 
 2. Upload .fit file to Workouts/ folder on device
 3. Workout and enjoy
-
-You can query the list of available output formats:
-
-    python3 workout-converter.py -F
 
 ## File Formats
 
@@ -48,7 +50,7 @@ At the moment, the following file formats are supported for reading/writing
 |------------------|--------------------|--------------------|--------------------------------------------|
 | Wahoo (.plan)    | :x:                | :white_check_mark: | for Wahoo ELEMNT headunits                 |
 | Zwift (.zwo)     | :white_check_mark: | :x:                |                                            |
-| iGPSPORT (.fit)  | :x:                | :white_check_mark: | for iGPSPORT (Binavi-compatible .fit file) |
+| iGPSPORT (.fit)  | :x:                | :white_check_mark: | BiNavi-compatible .fit file. Other iGPSPORT devices may work but untested |
 
 Additional support can be easily added by implmenting a corresponding [parser](workout_converter/parsers)
 
